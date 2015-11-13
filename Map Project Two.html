@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Map Project Two</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<style>
+		    * {
+		        font-family: tahoma;
+		    }
+		    body {
+		        padding: 0;
+		        margin: 0;
+			}
+			#map {
+		        height: 100%;
+		        width: 100%;
+		        left: 0;
+		        position: absolute;
+		        top: 0; 
+		        z-index: 1;
+			}
+			#title-bar {
+		        z-index: 2;
+		        text-align: center;
+		        text-transform: uppercase;
+		        width: 100%;
+		        color: white;
+		        font-size: 30px;
+		        background-color: black;
+		        padding: 8px 0 8px 0;
+		        margin: 0;
+		        position: absolute;
+		        opacity: 0.8;
+		    }
+		    @media (max-width: 640px) { /* for mobile */
+		        #menu {
+					text-align: center;
+					color: white;
+					position: absolute;
+					top: 50px;
+					z-index: 2;
+					width: 100%;
+		        }
+		        #marker-image {
+					height: 30px;
+		        }
+		        #menu-scroller {
+					height: 100px;
+					overflow: scroll;
+					background-color: gray;
+					opacity: 0.8;
+					padding: 10px;
+		        }
+		        #end-bar {
+					background-color: black;
+					opacity: 0.8;
+					padding: 10px;
+		        }
+		        button {
+					color: white;
+					font-size: 20px;
+					width: 100%;
+					margin-bottom: 10px;
+					background-color: gray;
+					opacity: 0.8;
+					border-color: white;
+		        }
+		    }
+		    @media (min-width: 640px) { /*for desktop and tablet */
+		        #menu {
+					text-align: center;
+					color: white;
+					position: absolute;
+					top: 100px;
+					left: 25px;
+					z-index: 2;
+					padding-right: 10px;
+					padding-left: 10px;
+					width: 200px;
+		        }
+		        #marker-image {
+		        	width: 100%;
+		        }
+		        #menu-scroller {
+					height: 200px;
+					overflow: scroll;
+					background-color: gray;
+					opacity: 0.8;
+					padding: 10px;
+
+		        }
+		        #end-bar {
+					background-color: black;
+					opacity: 0.8;
+					padding: 10px;
+				}
+		        button {
+					color: white;
+					font-size: 20px;
+					width: 100%;
+					margin-bottom: 10px;
+					background-color: gray;
+					opacity: 0.8;
+					border-color: white;
+		        }
+		    }
+    	</style>
+	</head>
+	<body>
+		<h1 id="title-bar">Spencer Eats</h1>
+		<div id="menu">
+			<form id="end-bar" data-bind="submit: filterSearch">
+				<input data-bind="value: searchTerm, click: emptySearch">
+			</form>
+			<div id="menu-scroller" data-bind="foreach: searchedEateries">
+				<button data-bind="text: name, click: $parent.updateInfowindow"></button>
+			</div>
+			<div id="end-bar"><img src="images/poweredbyfoursquare.png" id="marker-image"></div>
+		</div>
+
+		<div id="map"></div>
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+		<script src="js/mapapp.js"></script>
+		<!--Google Maps API called asynchronously, with defer for older browser compatibility-->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+	</body>
+</html>
